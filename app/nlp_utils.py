@@ -1,6 +1,24 @@
 import spacy
 from transformers import pipeline
 
+from spacy.cli import download
+import sys
+
+def ensure_spacy_model(model_name="en_core_web_sm"):
+    """Ensure the spaCy model is installed."""
+    try:
+        spacy.load(model_name)
+        print(f"Model '{model_name}' is already installed.")
+    except OSError:
+        print(f"Model '{model_name}' not found. Downloading now...")
+        download(model_name)
+        print(f"Model '{model_name}' successfully downloaded.")
+        spacy.load(model_name)  # Ensure it loads correctly after installation
+
+# Ensure the required spaCy model is installed
+ensure_spacy_model()
+
+
 nlp_spacy = spacy.load("en_core_web_sm")
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
