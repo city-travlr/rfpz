@@ -24,6 +24,4 @@ Make sure you have Python 3.9+ installed. Then, install the necessary dependenci
 ```bash
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
-
-
 streamlit run /workspaces/rfpz/app/main.py
